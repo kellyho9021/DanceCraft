@@ -529,35 +529,42 @@ void readCsv(int userID, String fileName)
 {
   //read the csv file
   table = loadTable(fileName, "header"); 
-  int rows = 1; //number of rows
   int i = 0; 
   int index = 0; //the index of the row that will be read
   //iterate through the file to get the number of rows
-  for (TableRow skim : table.rows()) {
-    rows++;
+  for (TableRow row : table.rows()) {
+    skel_data[i][index].x = row.getInt("x");
+    skel_data[i][index].y = row.getInt("y");
+    skel_data[i][index].z = row.getInt("z");
+    index++;
+    if (row.getInt("joint") == 14)
+    {
+      i++;
+      index = 0;
+    }
   }
   //get the number of unread skeletons in the file
-  int num = rows / 14;
-  //retrieves the skeleton's data
-  while( num > 0)
-  {
-   // ArrayList<int> skeleton_data = new ArrayList<int>();
-   //retrieves skeleton's coordinate values for each position
-   //interate through 14 position of the skeleton
-    for (int j = 0; j < 14; j++)
-    {
-      //get the data of the row at index
-      TableRow row = table.getRow(index);
-      skel_data[i][j].x = row.getInt("x");
-      skel_data[i][j].y = row.getInt("y");
-      skel_data[i][j].z = row.getInt("z");
-      index++; //increasing index
-    }
-    i++; //move to the next skeleton
-    num--; //minus read skeletons
-  }
+//  int num = rows / 14;
+//  //retrieves the skeleton's data
+//  while( num > 0)
+//  {
+//   // ArrayList<int> skeleton_data = new ArrayList<int>();
+//   //retrieves skeleton's coordinate values for each position
+//   //interate through 14 position of the skeleton
+//    for (int j = 0; j < 14; j++)
+//    {
+//      //get the data of the row at index
+//      TableRow row = table.getRow(index);
+//      skel_data[i][j].x = row.getInt("x");
+//      skel_data[i][j].y = row.getInt("y");
+//      skel_data[i][j].z = row.getInt("z");
+//      index++; //increasing index
+//    }
+//    i++; //move to the next skeleton
+//    num--; //minus read skeletons
+//  }
   //play back the skeletons
-  playBack(userID, skel_data);
+//  playBack(userID, skel_data);
 }
 
 //playBack the skeleton
