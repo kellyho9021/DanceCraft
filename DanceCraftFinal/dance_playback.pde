@@ -5,7 +5,7 @@ by the user.
 //-------------------------------------------------------------//
 float offsetX; //The offset x of the skeleton
 float offsetY; // The offset y of the skeleton
-float midWidth = 640; //middle width of the left half screen
+float midWidth = 320 * 4; //middle width of the left half screen
 float midHeight = 720; //middle height of the left haft screen
 void readCsv(File selection)
 {
@@ -54,8 +54,8 @@ void playBack(Integer rowNum)
 {
   if (rowNum < skel_data.length) {  //Compare number passed to function and make sure its less than the length of the array of skeleton data
     println ("Drawing!" + ' ' + rowNum);
-    offsetX = alignX(skel_data[rowNum][8]);
-    offsetY = alignY(skel_data[rowNum][8]);
+    offsetX = alignX(skel_data[0][8]);
+    offsetY = alignY(skel_data[0][8]);
     drawBack(skel_data[rowNum][0], skel_data[rowNum][1]); //Head and neck
     drawBack(skel_data[rowNum][1], skel_data[rowNum][2]); //Neck and left shoulder
     drawBack(skel_data[rowNum][2], skel_data[rowNum][4]); //Left shoulder and Left elbow
